@@ -2,7 +2,7 @@
 //  WikiExplorerTests.swift
 //  WikiExplorerTests
 //
-//  Created by Swati Sood on 16/02/2026.
+//  Created by Vikas Kharb on 16/02/2026.
 //
 
 import Testing

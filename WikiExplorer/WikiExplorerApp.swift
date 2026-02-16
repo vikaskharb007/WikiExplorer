@@ -2,7 +2,7 @@
 //  WikiExplorerApp.swift
 //  WikiExplorer
 //
-//  Created by Swati Sood on 16/02/2026.
+//  Created by Vikas Kharb on 16/02/2026.
 //
 
 import SwiftUI
@@ -11,7 +11,7 @@ import SwiftUI
 struct WikiExplorerApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            PlacesView()
         }
     }
 }
