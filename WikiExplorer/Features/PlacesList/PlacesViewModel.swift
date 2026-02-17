@@ -21,6 +21,7 @@ final class PlacesViewModel: ObservableObject {
         self.appConnectService = appConnectService
     }
     
+    @MainActor
     func downloadPlaces() async {
         guard !isLoading else { return }
         isLoading = true
@@ -34,12 +35,21 @@ final class PlacesViewModel: ObservableObject {
         }
     }
     
-    func connectToApp(lat: Double, long: Double) async {
+    func connectToApp(latitude: Double, longitude: Double) async {
         do {
-            try await appConnectService.open(lat, long: long)
-            requestError = nil
+            try await appConnectService.open(latitude: latitude, longitude: longitude)
+            // Another way of exclusively running a specific piece on the main actor rather than the entire method
+            await MainActor.run {
+                requestError = nil
+            }
         } catch {
-            requestError = error as? NetworkRequestError
+            await MainActor.run {
+                guard let networkRequestError = error as? NetworkRequestError else {
+                    requestError = NetworkRequestError.genericError(error.localizedDescription)
+                    return
+                }
+                requestError = networkRequestError
+            }
         }
     }
 }

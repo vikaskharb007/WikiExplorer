@@ -7,5 +7,5 @@
 
 
 public protocol AppConnectProtocol {
-    func open(_ lat: Double, long: Double) async throws
+    func open(latitude: Double, longitude: Double) async throws
 }

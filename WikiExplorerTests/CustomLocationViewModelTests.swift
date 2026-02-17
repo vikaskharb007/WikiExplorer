@@ -18,10 +18,10 @@ struct CustomLocationViewModelTests {
         let mock = MockAppConnectService()
         let sut = CustomLocationViewModel(appConnectService: mock)
 
-        await sut.validateCoordinatesAndConnectApp(lat: "abc", long: "123")
+        await sut.connectIfValid(lat: "abc", long: "123")
         #expect((sut.requestError as? CoordinateValidationError) == .invalidNumber)
 
-        await sut.validateCoordinatesAndConnectApp(lat: "12.3", long: "xyz")
+        await sut.connectIfValid(lat: "12.3", long: "xyz")
         #expect((sut.requestError as? CoordinateValidationError) == .invalidNumber)
         #expect((sut.requestError as? CoordinateValidationError)?.errorDescription == "Please enter valid numbers for latitude and longitude.")
     }
@@ -32,10 +32,10 @@ struct CustomLocationViewModelTests {
         let mock = MockAppConnectService()
         let sut = CustomLocationViewModel(appConnectService: mock)
 
-        await sut.validateCoordinatesAndConnectApp(lat: "-90.1", long: "0")
+        await sut.connectIfValid(lat: "-90.1", long: "0")
         #expect((sut.requestError as? CoordinateValidationError) == .latitudeOutOfBounds)
 
-        await sut.validateCoordinatesAndConnectApp(lat: "90.5", long: "0")
+        await sut.connectIfValid(lat: "90.5", long: "0")
         #expect((sut.requestError as? CoordinateValidationError) == .latitudeOutOfBounds)
         #expect((sut.requestError as? CoordinateValidationError)?.errorDescription == "Latitude must be between -90.0 and 90.0.")
         
@@ -47,10 +47,10 @@ struct CustomLocationViewModelTests {
         let mock = MockAppConnectService()
         let sut = CustomLocationViewModel(appConnectService: mock)
 
-        await sut.validateCoordinatesAndConnectApp(lat: "0", long: "-180.5")
+        await sut.connectIfValid(lat: "0", long: "-180.5")
         #expect((sut.requestError as? CoordinateValidationError) == .longitudeOutOfBounds)
 
-        await sut.validateCoordinatesAndConnectApp(lat: "0", long: "180.1")
+        await sut.connectIfValid(lat: "0", long: "180.1")
         #expect((sut.requestError as? CoordinateValidationError) == .longitudeOutOfBounds)
         #expect((sut.requestError as? CoordinateValidationError)?.errorDescription == "Longitude must be between -180.0 and 180.0.")
     }
@@ -61,7 +61,7 @@ struct CustomLocationViewModelTests {
         let mock = MockAppConnectService()
         let sut = CustomLocationViewModel(appConnectService: mock)
 
-        await sut.validateCoordinatesAndConnectApp(lat: "  12.34  ", long: "  -56.78\n")
+        await sut.connectIfValid(lat: "  12.34  ", long: "  -56.78\n")
 
         let called = try #require(mock.openCalled)
         #expect(called.lat == 12.34)
@@ -77,7 +77,7 @@ struct CustomLocationViewModelTests {
         let sut = CustomLocationViewModel(appConnectService: mock)
         sut.requestError = CoordinateValidationError.invalidNumber
 
-        await sut.connectToApp(lat: 1, long: 2)
+        await sut.connectToApp(latitude: 1, longitude: 2)
 
         #expect(sut.requestError == nil)
     }
@@ -89,7 +89,7 @@ struct CustomLocationViewModelTests {
         mock.result = .failure(NetworkRequestError.genericError("Invalid URL"))
         let sut = CustomLocationViewModel(appConnectService: mock)
 
-        await sut.connectToApp(lat: 0, long: 0)
+        await sut.connectToApp(latitude: 0, longitude: 0)
 
         #expect((sut.requestError as? NetworkRequestError) == NetworkRequestError.genericError("Invalid URL"))
     }

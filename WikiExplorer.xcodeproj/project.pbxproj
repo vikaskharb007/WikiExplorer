@@ -32,11 +32,6 @@
 			path = WikiExplorerTests;
 			sourceTree = "<group>";
 		};
-		0D6FEA022F438C8B000E5EEC /* WikiExplorerUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = WikiExplorerUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +57,6 @@
 			children = (
 				0D6FE9EA2F438C89000E5EEC /* WikiExplorer */,
 				0D6FE9F82F438C8B000E5EEC /* WikiExplorerTests */,
-				0D6FEA022F438C8B000E5EEC /* WikiExplorerUITests */,
 				0D6FE9E92F438C89000E5EEC /* Products */,
 			);
 			sourceTree = "<group>";

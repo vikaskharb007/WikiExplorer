@@ -16,19 +16,26 @@ struct PlacesView: View {
             if let requestError = viewModel.requestError  {
                 Text(requestError.title)
                     .font(.headline)
+                    .accessibilityAddTraits(.isHeader)
+                
                 Text(requestError.errorDescription)
                     .font(.footnote)
                     .foregroundStyle(.secondary)
+                
                 Button("Retry") {
                     Task { await viewModel.downloadPlaces() }
                 }
+                .accessibilityHint("Attempts to download the place list again")
             }
         }
         .padding()
+        .accessibilityElement(children: .combine)
     }
     
     var progressView: some View {
-        ProgressView("Loading…")
+        ProgressView("Loading...")
+            .accessibilityLabel("Loading places")
+            .accessibilityAddTraits(.updatesFrequently)
     }
     
     var customLocationExploreButton: some View {
@@ -50,15 +57,16 @@ struct PlacesView: View {
                     errorView
                 } else {
                     List(viewModel.places) { place in
-                        PlacesViewRow(place: place)
-                            .onTapGesture {
-                                Task {
-                                    await viewModel.connectToApp(lat: place.latitude, long: place.longitude)
-                                }
+                        Button {
+                            Task {
+                                await viewModel.connectToApp(latitude: place.latitude, longitude: place.longitude)
                             }
-                            .accessibilityElement(children: .ignore)
-                            .accessibilityLabel("\(place.title), Coordinates - \(place.displayCoordinates)")
-                            .accessibilityHint("Opens in Wikipedia")
+                        } label: {
+                            PlacesViewRow(place: place)
+                        }
+                        .accessibilityElement(children: .ignore)
+                        .accessibilityLabel("\(place.title), Coordinates - \(place.displayCoordinates)")
+                        .accessibilityHint("Opens in Wikipedia")
                     }
                     .listStyle(.plain)
                     
@@ -66,7 +74,11 @@ struct PlacesView: View {
                 }
             }
             .navigationTitle("Places")
-            .task { await viewModel.downloadPlaces() }
+            .onAppear {
+                Task {
+                    await viewModel.downloadPlaces()
+                }
+            }
         }
     }
 }

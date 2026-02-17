@@ -8,8 +8,8 @@
 final class MockAppConnectService: AppConnectProtocol {
     var openCalled: (lat: Double, long: Double)?
     var result: Result<Void, Error> = .success(())
-    func open(_ lat: Double, long: Double) async throws {
-        openCalled = (lat, long)
+    func open(latitude: Double, longitude: Double) async throws {
+        openCalled = (latitude, longitude)
         switch result {
         case .success:
             return

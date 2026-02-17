@@ -55,7 +55,7 @@ struct PlacesViewModelTests {
         mockConnect.result = .success(())
         let sut = PlacesViewModel(placesRepository: mockRepo, appConnectService: mockConnect)
 
-        await sut.connectToApp(lat: 12.34, long: 56.78)
+        await sut.connectToApp(latitude: 12.34, longitude: 56.78)
 
         let called = try #require(mockConnect.openCalled)
         #expect(called.lat == 12.34 && called.long == 56.78)
@@ -70,7 +70,7 @@ struct PlacesViewModelTests {
         mockConnect.result = .failure(NetworkRequestError.genericError("invalid URL"))
         let sut = PlacesViewModel(placesRepository: mockRepo, appConnectService: mockConnect)
 
-        await sut.connectToApp(lat: 0, long: 0)
+        await sut.connectToApp(latitude: 0, longitude: 0)
 
         #expect(sut.requestError == NetworkRequestError.genericError("invalid URL"))
     }

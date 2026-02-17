@@ -22,7 +22,7 @@ struct CustomLocationView: View {
 
             Button("Explore") {
                 Task {
-                    await viewModel.validateCoordinatesAndConnectApp(lat: latitudeText, long: longitudeText)
+                    await viewModel.connectIfValid(lat: latitudeText, long: longitudeText)
                 }
             }
             .buttonStyle(.borderedProminent)

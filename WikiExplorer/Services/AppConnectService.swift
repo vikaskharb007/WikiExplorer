@@ -15,16 +15,16 @@ struct AppConnectService: AppConnectProtocol {
         self.application = application
     }
     
-     func open(_ lat: Double, long: Double) async throws {
-        let wikiURL = try await generateURL(lat, long: long)
+     func open(latitude: Double, longitude: Double) async throws {
+         let wikiURL = try await generateURL(latitude: latitude, longitude: longitude)
         
          Task { @MainActor in
              await application.open(wikiURL)
          }
     }
     
-    func generateURL(_ lat: Double, long: Double) async throws -> URL {
-        guard let url = URL(string: "wikipedia://places?coordinates=\(lat),\(long)") else {
+    func generateURL(latitude: Double, longitude: Double) async throws -> URL {
+        guard let url = URL(string: "wikipedia://places?coordinates=\(latitude),\(longitude)") else {
             throw NetworkRequestError.genericError("Invalid url")
         }
         
