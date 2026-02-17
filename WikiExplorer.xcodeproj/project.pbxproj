@@ -14,19 +14,11 @@
 			remoteGlobalIDString = 0D6FE9E72F438C89000E5EEC;
 			remoteInfo = WikiExplorer;
 		};
-		0D6FEA002F438C8B000E5EEC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0D6FE9E02F438C89000E5EEC /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0D6FE9E72F438C89000E5EEC;
-			remoteInfo = WikiExplorer;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0D6FE9E82F438C89000E5EEC /* WikiExplorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WikiExplorer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D6FE9F52F438C8B000E5EEC /* WikiExplorerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WikiExplorerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0D6FE9FF2F438C8B000E5EEC /* WikiExplorerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WikiExplorerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -62,13 +54,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0D6FE9FC2F438C8B000E5EEC /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -87,7 +72,6 @@
 			children = (
 				0D6FE9E82F438C89000E5EEC /* WikiExplorer.app */,
 				0D6FE9F52F438C8B000E5EEC /* WikiExplorerTests.xctest */,
-				0D6FE9FF2F438C8B000E5EEC /* WikiExplorerUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,29 +124,6 @@
 			productReference = 0D6FE9F52F438C8B000E5EEC /* WikiExplorerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		0D6FE9FE2F438C8B000E5EEC /* WikiExplorerUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 0D6FEA0F2F438C8B000E5EEC /* Build configuration list for PBXNativeTarget "WikiExplorerUITests" */;
-			buildPhases = (
-				0D6FE9FB2F438C8B000E5EEC /* Sources */,
-				0D6FE9FC2F438C8B000E5EEC /* Frameworks */,
-				0D6FE9FD2F438C8B000E5EEC /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				0D6FEA012F438C8B000E5EEC /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				0D6FEA022F438C8B000E5EEC /* WikiExplorerUITests */,
-			);
-			name = WikiExplorerUITests;
-			packageProductDependencies = (
-			);
-			productName = WikiExplorerUITests;
-			productReference = 0D6FE9FF2F438C8B000E5EEC /* WikiExplorerUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -177,10 +138,6 @@
 						CreatedOnToolsVersion = 26.2;
 					};
 					0D6FE9F42F438C8B000E5EEC = {
-						CreatedOnToolsVersion = 26.2;
-						TestTargetID = 0D6FE9E72F438C89000E5EEC;
-					};
-					0D6FE9FE2F438C8B000E5EEC = {
 						CreatedOnToolsVersion = 26.2;
 						TestTargetID = 0D6FE9E72F438C89000E5EEC;
 					};
@@ -202,7 +159,6 @@
 			targets = (
 				0D6FE9E72F438C89000E5EEC /* WikiExplorer */,
 				0D6FE9F42F438C8B000E5EEC /* WikiExplorerTests */,
-				0D6FE9FE2F438C8B000E5EEC /* WikiExplorerUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -216,13 +172,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		0D6FE9F32F438C8B000E5EEC /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0D6FE9FD2F438C8B000E5EEC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -246,13 +195,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0D6FE9FB2F438C8B000E5EEC /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -260,11 +202,6 @@
 			isa = PBXTargetDependency;
 			target = 0D6FE9E72F438C89000E5EEC /* WikiExplorer */;
 			targetProxy = 0D6FE9F62F438C8B000E5EEC /* PBXContainerItemProxy */;
-		};
-		0D6FEA012F438C8B000E5EEC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0D6FE9E72F438C89000E5EEC /* WikiExplorer */;
-			targetProxy = 0D6FEA002F438C8B000E5EEC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -519,54 +456,6 @@
 			};
 			name = Release;
 		};
-		0D6FEA102F438C8B000E5EEC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
-				MACOSX_DEPLOYMENT_TARGET = 26.2;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.vikas.wikiExplorer.WikiExplorerUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_TARGET_NAME = WikiExplorer;
-				XROS_DEPLOYMENT_TARGET = 26.2;
-			};
-			name = Debug;
-		};
-		0D6FEA112F438C8B000E5EEC /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
-				MACOSX_DEPLOYMENT_TARGET = 26.2;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.vikas.wikiExplorer.WikiExplorerUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_TARGET_NAME = WikiExplorer;
-				XROS_DEPLOYMENT_TARGET = 26.2;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -593,15 +482,6 @@
 			buildConfigurations = (
 				0D6FEA0D2F438C8B000E5EEC /* Debug */,
 				0D6FEA0E2F438C8B000E5EEC /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		0D6FEA0F2F438C8B000E5EEC /* Build configuration list for PBXNativeTarget "WikiExplorerUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				0D6FEA102F438C8B000E5EEC /* Debug */,
-				0D6FEA112F438C8B000E5EEC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
