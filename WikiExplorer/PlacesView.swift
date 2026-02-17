@@ -50,6 +50,12 @@ struct PlacesView: View {
                                 .foregroundStyle(.secondary)
                         }
                         .contentShape(Rectangle())
+                        .onTapGesture {
+                            if let url = viewModel.generateURLFor(lat: place.latitude, long: place.longitude) {
+                                UIApplication.shared.open(url)
+                            }
+                            
+                        }
                     }
                     .listStyle(.plain)
                 }
