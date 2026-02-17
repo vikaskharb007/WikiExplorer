@@ -34,3 +34,9 @@ struct Place: Identifiable, Decodable {
         self.init(title: title, latitude: latitude, longitude: longitude)
     }
 }
+
+extension Place {
+    var displayCoordinates: String {
+        "Latitude: \(latitude), Longitude: \(longitude)"
+    }
+}

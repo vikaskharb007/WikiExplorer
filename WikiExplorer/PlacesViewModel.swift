@@ -14,9 +14,11 @@ final class PlacesViewModel: ObservableObject {
     @Published var requestError: NetworkRequestError?
     
     private let repository: PlacesRepositoryProtocol
+    private let appConnectService: AppConnectProtocol
 
-    init(placesRepository: PlacesRepositoryProtocol = PlacesRepository()) {
+    init(placesRepository: PlacesRepositoryProtocol = PlacesRepository(), appConnectService: AppConnectProtocol = AppConnectService()) {
         self.repository = placesRepository
+        self.appConnectService = appConnectService
     }
     
     func downloadPlaces() async {
@@ -32,12 +34,13 @@ final class PlacesViewModel: ObservableObject {
         }
     }
     
-    func generateURLFor(lat: Double, long: Double) -> URL? {
-        guard let compiledURL = URL(string: "wikipedia://places?coordinates=\(lat),\(long)") else {
-            return nil
+    func connectToApp(lat: Double, long: Double) async {
+        do {
+            try await appConnectService.open(lat, long: long)
+            requestError = nil
+        } catch {
+            requestError = error as? NetworkRequestError
         }
-        
-        return compiledURL
     }
 }
 

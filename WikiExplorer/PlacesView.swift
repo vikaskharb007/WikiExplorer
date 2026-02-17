@@ -16,7 +16,7 @@ struct PlacesView: View {
             if let requestError = viewModel.requestError  {
                 Text(requestError.title)
                     .font(.headline)
-                Text(requestError.message)
+                Text(requestError.errorDescription)
                     .font(.footnote)
                     .foregroundStyle(.secondary)
                 Button("Retry") {
@@ -31,33 +31,38 @@ struct PlacesView: View {
         ProgressView("Loading…")
     }
     
+    var customLocationExploreButton: some View {
+        NavigationLink {
+            CustomLocationView()
+        } label: {
+            Label("Explore Custom Location", systemImage: "mappin.and.ellipse")
+        }
+        .accessibilityLabel("Explore Custom Location")
+        .accessibilityHint("Opens a screen to enter coordinates manually")
+    }
+    
     var body: some View {
         NavigationStack {
             VStack {
                 if viewModel.isLoading && viewModel.places.isEmpty {
                     progressView
-                } else if let error = viewModel.requestError, viewModel.places.isEmpty {
+                } else if viewModel.requestError != nil, viewModel.places.isEmpty {
                     errorView
                 } else {
                     List(viewModel.places) { place in
-                        VStack(alignment: .leading) {
-                            Text(place.title)
-                                .font(.headline)
-                                .padding(.bottom)
-                            
-                            Text("Lat: \(place.latitude), Lon: \(place.longitude)")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                        }
-                        .contentShape(Rectangle())
-                        .onTapGesture {
-                            if let url = viewModel.generateURLFor(lat: place.latitude, long: place.longitude) {
-                                UIApplication.shared.open(url)
+                        PlacesViewRow(place: place)
+                            .onTapGesture {
+                                Task {
+                                    try? await viewModel.connectToApp(lat: place.latitude, long: place.longitude)
+                                }
                             }
-                            
-                        }
+                            .accessibilityElement(children: .ignore)
+                            .accessibilityLabel("\(place.title), Coordinates - \(place.displayCoordinates)")
+                            .accessibilityHint("Opens in Wikipedia")
                     }
                     .listStyle(.plain)
+                    
+                    customLocationExploreButton
                 }
             }
             .navigationTitle("Places")

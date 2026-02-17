@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum NetworkRequestError: Error {
+enum NetworkRequestError: Error, LocalizedError, Equatable {
     case jsonParseError
     case apiError(String)
     case genericError(String)
@@ -26,7 +26,7 @@ enum NetworkRequestError: Error {
         }
     }
     
-    var message: String {
+    var errorDescription: String {
         switch self {
         
         case .jsonParseError:
