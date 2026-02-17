@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Place: Identifiable, Decodable {
+struct Place: Identifiable, Decodable, Sendable {
     let id: UUID
     let title: String
     let latitude: Double
@@ -19,7 +19,7 @@ struct Place: Identifiable, Decodable {
         case long
     }
 
-    init(id: UUID = UUID(), title: String, latitude: Double, longitude: Double) {
+    init(id: UUID, title: String, latitude: Double, longitude: Double) {
         self.id = id
         self.title = title
         self.latitude = latitude
@@ -31,7 +31,7 @@ struct Place: Identifiable, Decodable {
         let title = try container.decodeIfPresent(String.self, forKey: .name) ?? "Unknown"
         let latitude = try container.decode(Double.self, forKey: .lat)
         let longitude = try container.decode(Double.self, forKey: .long)
-        self.init(title: title, latitude: latitude, longitude: longitude)
+        self.init(id: UUID(), title: title, latitude: latitude, longitude: longitude)
     }
 }
 

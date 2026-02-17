@@ -53,7 +53,7 @@ struct PlacesView: View {
                         PlacesViewRow(place: place)
                             .onTapGesture {
                                 Task {
-                                    try? await viewModel.connectToApp(lat: place.latitude, long: place.longitude)
+                                    await viewModel.connectToApp(lat: place.latitude, long: place.longitude)
                                 }
                             }
                             .accessibilityElement(children: .ignore)

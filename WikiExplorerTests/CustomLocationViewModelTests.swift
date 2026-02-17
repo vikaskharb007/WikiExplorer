@@ -23,6 +23,7 @@ struct CustomLocationViewModelTests {
 
         await sut.validateCoordinatesAndConnectApp(lat: "12.3", long: "xyz")
         #expect((sut.requestError as? CoordinateValidationError) == .invalidNumber)
+        #expect((sut.requestError as? CoordinateValidationError)?.errorDescription == "Please enter valid numbers for latitude and longitude.")
     }
 
     @Test("latitude out of bounds sets error")
@@ -36,6 +37,8 @@ struct CustomLocationViewModelTests {
 
         await sut.validateCoordinatesAndConnectApp(lat: "90.5", long: "0")
         #expect((sut.requestError as? CoordinateValidationError) == .latitudeOutOfBounds)
+        #expect((sut.requestError as? CoordinateValidationError)?.errorDescription == "Latitude must be between -90.0 and 90.0.")
+        
     }
 
     @Test("longitude out of bounds sets error")
@@ -49,6 +52,7 @@ struct CustomLocationViewModelTests {
 
         await sut.validateCoordinatesAndConnectApp(lat: "0", long: "180.1")
         #expect((sut.requestError as? CoordinateValidationError) == .longitudeOutOfBounds)
+        #expect((sut.requestError as? CoordinateValidationError)?.errorDescription == "Longitude must be between -180.0 and 180.0.")
     }
 
     @Test("trims whitespace and calls connect on success")

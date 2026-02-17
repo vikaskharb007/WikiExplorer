@@ -8,9 +8,9 @@ struct CustomLocationView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             Group {
-                coordinateField(title: "Latitude", placeholderText: "Enter latitude (-90.0 to 90.0)", inputField: $latitudeText)
+                coordinateField(title: "Latitude", placeholderText: "Enter latitude between -90.0 and 90.0)", inputField: $latitudeText)
                 
-                coordinateField(title: "Longitude", placeholderText: "Enter longitude (-180.0 to 180.0)", inputField: $longitudeText)
+                coordinateField(title: "Longitude", placeholderText: "Enter longitude between -180.0 and 180.0)", inputField: $longitudeText)
             }
 
             if let requestError = viewModel.requestError {
@@ -44,32 +44,6 @@ struct CustomLocationView: View {
                 .textFieldStyle(.roundedBorder)
         }
     }
-
-    /*private func validateAndExplore() {
-        errorMessage = nil
-
-        // Trim whitespace
-        let latString = latitudeText.trimmingCharacters(in: .whitespacesAndNewlines)
-        let lonString = longitudeText.trimmingCharacters(in: .whitespacesAndNewlines)
-
-        guard let lat = Double(latString), let lon = Double(lonString) else {
-            errorMessage = "Please enter valid numbers for latitude and longitude."
-            return
-        }
-
-        guard (-90.0...90.0).contains(lat) else {
-            errorMessage = "Latitude must be between -90.0 and 90.0."
-            return
-        }
-
-        guard (-180.0...180.0).contains(lon) else {
-            errorMessage = "Longitude must be between -180.0 and 180.0."
-            return
-        }
-
-        // All good: invoke callback if provided
-        onExplore?(lat, lon)
-    } */
 }
 
 #Preview {

@@ -2,7 +2,7 @@
 //  CustomLocationViewModel.swift
 //  WikiExplorer
 //
-//  Created by Swati Sood on 17/02/2026.
+//  Created by Vikas Kharb on 17/02/2026.
 //
 
 import Foundation
@@ -40,8 +40,10 @@ final class CustomLocationViewModel: ObservableObject {
         // Trim whitespace
         let latString = lat.trimmingCharacters(in: .whitespacesAndNewlines)
         let lonString = long.trimmingCharacters(in: .whitespacesAndNewlines)
-
-        guard let lat = Double(latString), let lon = Double(lonString) else {
+    
+        guard let lat = Double(latString.replacingOccurrences(of: ",", with: ".")),
+              let lon = Double(lonString.replacingOccurrences(of: ",", with: "."))
+        else {
             requestError = CoordinateValidationError.invalidNumber
             return
         }

@@ -2,7 +2,7 @@
 //  AppConnectProtocol.swift
 //  WikiExplorer
 //
-//  Created by Swati Sood on 17/02/2026.
+//  Created by Vikas Kharb on 17/02/2026.
 //
 
 
